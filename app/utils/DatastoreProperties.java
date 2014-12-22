@@ -3,7 +3,7 @@ package utils;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
-import exceptions.DatastoreExceptionc;
+import exceptions.DatastoreException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class DatastoreProperties {
     catch (ConfigException e) {
       value = PROPS.get(key);
       if (value == null) {
-        throw new DatastoreExceptionc("No property exists with key '" + key + "'");
+        throw new DatastoreException("No property exists with key '" + key + "'");
       }
     }
     return value;
