@@ -1,16 +1,20 @@
 package models;
 
-import exceptions.DataStoreException;
+import exceptions.DatastoreExceptionc;
 
 import java.io.*;
 
 public class Store {
 
-  public static String storagePath;
+  static String storagePath;
+
+  public static void setStoragePath(String storagePath) {
+    Store.storagePath = storagePath;
+  }
 
   public static void storeFile(String key, InputStream is) {
     if (keyExist(key)) {
-      throw new DataStoreException(key + " already exists");
+      throw new DatastoreExceptionc(key + " already exists");
     }
     try {
       FileOutputStream os = new FileOutputStream(new File(storagePath + key));
@@ -22,7 +26,7 @@ public class Store {
       }
     }
     catch (IOException e) {
-      throw new DataStoreException("Cannot store file", e);
+      throw new DatastoreExceptionc("Cannot store file", e);
     }
   }
 
@@ -35,7 +39,7 @@ public class Store {
       return new FileInputStream(storagePath + key);
     }
     catch (FileNotFoundException e) {
-      throw new DataStoreException("Cannot find requested file", e);
+      throw new DatastoreExceptionc("Cannot find requested file", e);
     }
   }
 
