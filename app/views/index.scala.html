@@ -1,14 +1,30 @@
 @(message: String)
 
-@main("Realty datastore") {
+  @main("Realty datastore") {
 
-  A storage area for data:
+    <h3>A storage area for data:</h3>
 
-  You can use the following operations:
-  POST          /store/:key     Create file at key location, put file in multipart and call it 'document'
-
-  GET           /store/:key     Fetch file at key location
-
-  DELETE        /store/:key     Delete file at key location
-
-}
+    <p>You can use the following operations:</p>
+    <table class="table table-bordered">
+      <tr>
+        <th>HTTP OPERATION</th>
+        <th>URL</th>
+        <th>DESCRIPTION</th>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/store/:key</td>
+        <td>Create file at key location, put file in multipart and call it 'document'</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td>/store/:key</td>
+        <td> Fetch file at key location</td>
+      </tr>
+      <tr>
+        <td>DELETE</td>
+        <td>/store/:key</td>
+        <td>Delete file at key location</td>
+      </tr>
+    </table>
+  }
