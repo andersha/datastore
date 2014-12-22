@@ -16,8 +16,7 @@ public class Store {
     if (keyExist(key)) {
       throw new DatastoreException(key + " already exists");
     }
-    try {
-      FileOutputStream os = new FileOutputStream(new File(storagePath + key));
+    try (FileOutputStream os = new FileOutputStream(new File(storagePath + key));) {
       int read;
       byte[] bytes = new byte[1024];
 

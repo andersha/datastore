@@ -2,6 +2,7 @@ package controllers;
 
 import models.Store;
 import play.Logger;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -30,11 +31,11 @@ public class Application extends Controller {
       }
       catch (Exception e) {
         Logger.info("Cannot store file", e);
-        return badRequest("{\"error\": \"Cannot store file\"}");
+        return badRequest(Json.toJson(new Error("Cannot store file")));
       }
     }
     else {
-      return badRequest("{\"error\": \"No file to store\"}");
+      return badRequest(Json.toJson(new Error("No file to store")));
     }
     return ok();
   }
