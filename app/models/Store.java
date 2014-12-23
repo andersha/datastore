@@ -1,8 +1,13 @@
 package models;
 
 import exceptions.DatastoreException;
+import utils.FileInfo;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Store {
 
@@ -44,5 +49,20 @@ public class Store {
 
   public static boolean removeFile(String key) {
     return new File(storagePath + key).delete();
+  }
+
+  public static List<FileInfo> listFiles() {
+    File[] files = new File(storagePath).listFiles();
+    if (files != null) {
+      ArrayList<FileInfo> out = new ArrayList<>();
+      SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+      for (File file : files) {
+        out.add(new FileInfo(file.getName(), file.length(), sdf.format(file.lastModified())));
+      }
+      return out;
+    }
+    else {
+      return Collections.emptyList();
+    }
   }
 }

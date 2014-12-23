@@ -13,7 +13,7 @@ public class DatastoreProperties {
   private static Config config;
 
   private static final Map<String, String> PROPS = new HashMap<String, String>() {{
-    put("storage_path", "D:");
+    put("storage_path", "D:\\DATASTORE\\");
   }};
 
   public static String getProperty(String key) {

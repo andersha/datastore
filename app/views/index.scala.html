@@ -1,30 +1,69 @@
-@(message: String)
+@(files: List[utils.FileInfo])
 
-  @main("Realty datastore") {
+@main("Realty datastore") {
 
-    <h3>A storage area for data:</h3>
+  <h3>A storage area for data:</h3>
 
-    <p>You can use the following operations:</p>
-    <table class="table table-bordered">
-      <tr>
-        <th>HTTP OPERATION</th>
-        <th>URL</th>
-        <th>DESCRIPTION</th>
+  <p>You can use the following operations:</p>
+  <table class="table table-bordered">
+    <tr>
+      <th>HTTP OPERATION</th>
+      <th>URL</th>
+      <th>DESCRIPTION</th>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/store/:key</td>
+      <td>Create file at key location, put file in multipart and call it 'document'</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/store/:key</td>
+      <td> Fetch file at key location</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/store/:key</td>
+      <td>Delete file at key location</td>
+    </tr>
+  </table>
+  <br/>
+  <h3>The files currently stored</h3>
+  <br/>
+  <table class="table">
+    <tr>
+      <th>Filename</th>
+      <th>Size</th>
+      <th>Last modified</th>
+      <th></th>
+    </tr>
+    @files.map { file =>
+      <tr id="@file.name">
+        <td>@file.name</td>
+        <td>@file.size</td>
+        <td>@file.timestamp</td>
+        <td>
+          <a class="btn btn-info" href="@routes.Application.fetch(file.name)" title="Fetch the file from disk">Fetch</a>
+          <a class="btn btn-danger" href="#" title="Delete the file from disk" onclick="deleteFile(@file.name);">Delete</a>
+        </td>
       </tr>
-      <tr>
-        <td>POST</td>
-        <td>/store/:key</td>
-        <td>Create file at key location, put file in multipart and call it 'document'</td>
-      </tr>
-      <tr>
-        <td>GET</td>
-        <td>/store/:key</td>
-        <td> Fetch file at key location</td>
-      </tr>
-      <tr>
-        <td>DELETE</td>
-        <td>/store/:key</td>
-        <td>Delete file at key location</td>
-      </tr>
-    </table>
+    }
+  </table>
+
+  <script>
+  function deleteFile(key) {
+    $.ajax({
+      type: "DELETE",
+      url: "/store/" + key,
+      success : function ( data ) {
+        $('#' + key).delay(100).fadeOut();
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.responseText) ;
+      }
+    });
   }
+  </script>
+
+}
+

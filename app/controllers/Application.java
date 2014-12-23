@@ -6,14 +6,17 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
+import utils.FileInfo;
 import views.html.index;
 
 import java.io.FileInputStream;
+import java.util.List;
 
 public class Application extends Controller {
 
   public static Result index() {
-    return ok(index.render("Your new application is ready."));
+    List<FileInfo> files = Store.listFiles();
+    return ok(index.render(files));
   }
 
   /**
