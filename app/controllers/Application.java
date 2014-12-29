@@ -36,11 +36,11 @@ public class Application extends Controller {
       }
       catch (Exception e) {
         Logger.info("Cannot store file", e);
-        return badRequest(Json.toJson(ErrorMessage.cannotStore()));
+        return badRequest(Json.toJson(ErrorMessage.cannotStore));
       }
     }
     else {
-      return badRequest(Json.toJson(ErrorMessage.noFile()));
+      return badRequest(Json.toJson(ErrorMessage.noFile));
     }
     return ok();
   }

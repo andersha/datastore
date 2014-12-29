@@ -39,14 +39,14 @@
             <th></th>
           </tr>
           @files.map { file =>
-            <tr id="@file.name">
+            <tr id="@file.counter">
               <td>@file.name</td>
               <td>@file.size</td>
               <td>@file.timestamp</td>
               <td>
                 <a class="btn btn-info" href="@routes.Application.fetch(file.name)" title="Fetch the file from disk">
                   Fetch</a>
-                <a class="btn btn-danger" href="#" title="Delete the file from disk" onclick="deleteFile('@file.name');">
+                <a class="btn btn-danger" href="#" title="Delete the file from disk" onclick="deleteFile('@file.name', @file.counter);">
                   Delete</a>
               </td>
             </tr>
@@ -56,12 +56,12 @@
     </div>
   </div>
   <script>
-  function deleteFile(key) {
+  function deleteFile(key, counter) {
     $.ajax({
       type: "DELETE",
       url: "/store/" + key,
       success : function ( data ) {
-        $('#' + key).delay(100).fadeOut();
+        $('#' + counter).delay(100).fadeOut();
       },
       error: function (xhr, ajaxOptions, thrownError) {
         alert(xhr.responseText) ;

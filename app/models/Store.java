@@ -56,8 +56,9 @@ public class Store {
     if (files != null) {
       ArrayList<FileInfo> out = new ArrayList<>();
       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+      int i = 1;
       for (File file : files) {
-        out.add(new FileInfo(file.getName(), file.length(), sdf.format(file.lastModified())));
+        out.add(new FileInfo(file.getName(), file.length(), sdf.format(file.lastModified()), i++));
       }
       return out;
     }
