@@ -11,6 +11,7 @@ import utils.FileInfo;
 import views.html.index;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 public class Application extends Controller {
@@ -35,7 +36,7 @@ public class Application extends Controller {
         Logger.info("Storing file at " + key);
       }
       catch (Exception e) {
-        Logger.info("Cannot store file", e);
+        Logger.info("Cannot store file at " + key, e);
         return badRequest(Json.toJson(ErrorMessage.cannotStore));
       }
     }
@@ -52,8 +53,15 @@ public class Application extends Controller {
    * @return document
    */
   public static Result fetch(String key) {
-    Logger.info("File fetched at " + key);
-    return ok(Store.fetchFile(key));
+    try {
+      InputStream content = Store.fetchFile(key);
+      Logger.info("File fetched at " + key);
+      return ok(content);
+    }
+    catch (Exception e) {
+      Logger.warn("Cannot fetch file at " + key, e);
+      return badRequest(Json.toJson(ErrorMessage.cannotFetch));
+    }
   }
 
   /**
@@ -67,6 +75,7 @@ public class Application extends Controller {
     }
     else {
       Logger.warn("Could not remove file at " + key);
+      return badRequest(Json.toJson(ErrorMessage.cannotDelete));
     }
     return ok();
   }
