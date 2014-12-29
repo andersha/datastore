@@ -31,6 +31,7 @@ public class Application extends Controller {
       dokument.getContentType();
       try {
         Store.storeFile(key, new FileInputStream(dokument.getFile()));
+        Logger.info("Storing file at " + key);
       }
       catch (Exception e) {
         Logger.info("Cannot store file", e);
@@ -50,6 +51,7 @@ public class Application extends Controller {
    * @return document
    */
   public static Result fetch(String key) {
+    Logger.info("File fetched at " + key);
     return ok(Store.fetchFile(key));
   }
 
@@ -59,7 +61,12 @@ public class Application extends Controller {
    * @param key the key of the document
    */
   public static Result remove(String key) {
-    Store.removeFile(key);
+    if (Store.removeFile(key)) {
+      Logger.info("Removed file at " + key);
+    }
+    else {
+      Logger.warn("Could not remove file at " + key);
+    }
     return ok();
   }
 }
