@@ -34,6 +34,7 @@ public class Application extends Controller {
       try {
         Store.storeFile(key, new FileInputStream(dokument.getFile()));
         Logger.info("Storing file at " + key);
+        return ok();
       }
       catch (Exception e) {
         Logger.info("Cannot store file at " + key, e);
@@ -41,9 +42,9 @@ public class Application extends Controller {
       }
     }
     else {
+      Logger.info("Tried to store at " + key + " without a file");
       return badRequest(Json.toJson(ErrorMessage.noFile));
     }
-    return ok();
   }
 
   /**
@@ -55,11 +56,11 @@ public class Application extends Controller {
   public static Result fetch(String key) {
     try {
       InputStream content = Store.fetchFile(key);
-      Logger.info("File fetched at " + key);
+      Logger.debug("File fetched at " + key);
       return ok(content);
     }
     catch (Exception e) {
-      Logger.warn("Cannot fetch file at " + key, e);
+      Logger.info("Cannot fetch file at " + key, e);
       return badRequest(Json.toJson(ErrorMessage.cannotFetch));
     }
   }
@@ -72,11 +73,11 @@ public class Application extends Controller {
   public static Result remove(String key) {
     if (Store.removeFile(key)) {
       Logger.info("Removed file at " + key);
+      return ok();
     }
     else {
-      Logger.warn("Could not remove file at " + key);
+      Logger.info("Could not remove file at " + key);
       return badRequest(Json.toJson(ErrorMessage.cannotDelete));
     }
-    return ok();
   }
 }
