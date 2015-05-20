@@ -10,18 +10,18 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb)
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
   javaWs,
-  "com.moonlit.logfaces" % "lfsappenders" % "4.1.2",
+  "com.moonlit.logfaces" % "lfsappenders" % "4.1.4",
   "commons-io" % "commons-io" % "2.4",
-  "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "org.webjars" % "jquery" % "2.1.3",
-  "org.webjars" % "bootstrap" % "3.3.1"
+  "org.webjars" %% "webjars-play" % "2.3.0-3",
+  "org.webjars" % "jquery" % "2.1.4",
+  "org.webjars" % "bootstrap" % "3.3.4"
 )
 
 packagedArtifacts += ((artifact in playPackageAssets).value -> playPackageAssets.value)
