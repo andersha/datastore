@@ -10,7 +10,7 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb)
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
   javaJdbc,
@@ -26,7 +26,7 @@ libraryDependencies ++= Seq(
 
 packagedArtifacts += ((artifact in playPackageAssets).value -> playPackageAssets.value)
 
-credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.eiendomsinfo.no", "build", "buildr0nne")
+credentials += Credentials("Nexus Repository Manager", "nexus.eiendomsinfo.no", "build", "buildr0nne")
 
 publishMavenStyle := true
 
