@@ -43,7 +43,7 @@ if "%ACTIVATOR_HOME%"=="" (
 )
 
 set ERROR_CODE=0
-set APP_VERSION=1.3.7
+set APP_VERSION=1.3.10
 set ACTIVATOR_LAUNCH_JAR=activator-launch-%APP_VERSION%.jar
 
 rem Detect if we were double clicked, although theoretically A user could
@@ -151,7 +151,7 @@ for /f "delims=. tokens=1-3" %%v in ("%JAVA_VERSION%") do (
  )
 
 rem We use the value of the JAVA_OPTS environment variable if defined, rather than the config.
-set _JAVA_OPTS=%JAVA_OPTS% -Xms1G -Xmx2G -Xss2m
+set _JAVA_OPTS=%JAVA_OPTS% -Xms256m -Xmx512m -Xss1m
 
 set DEBUG_OPTS=
 
