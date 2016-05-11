@@ -1,5 +1,3 @@
-//import sbtbuildinfo.Plugin._
-
 name := """realty-datastore"""
 
 version := "1.0-SNAPSHOT"
