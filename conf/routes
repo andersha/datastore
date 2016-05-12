@@ -4,6 +4,7 @@
 
 # Home page
 GET           /                    controllers.Application.index()
+GET           /systemping          controllers.SystemPingRest.status()
 
 # Ops
 POST          /store/:key          controllers.Application.store(key: String)

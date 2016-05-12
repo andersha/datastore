@@ -2,7 +2,7 @@ name := """realty-datastore"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb)
+lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb, BuildInfoPlugin)
 
 scalaVersion := "2.11.8"
 
@@ -21,6 +21,25 @@ libraryDependencies ++= Seq(
 credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.eiendomsinfo.no", "build", "buildr0nne")
 
 resolvers += "iBiblio" at "https://nexus.eiendomsinfo.no/content/groups/ne/"
+
+buildInfoKeys ++= Seq[BuildInfoKey](
+  "builtAt" -> {
+    val dtf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    dtf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"))
+    dtf.format(new java.util.Date())
+  },
+  "builtAtMillis" -> {
+    System.currentTimeMillis()
+  }
+)
+
+buildInfoKeys ++= Seq[BuildInfoKey](
+  BuildInfoKey.map(name) {
+    case (k, v) => "project" + k.capitalize -> v.capitalize
+  }
+)
+
+buildInfoPackage := "buildinfo"
 
 sources in doc in Compile := List()
 
