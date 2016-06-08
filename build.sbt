@@ -1,6 +1,6 @@
 name := """realty-datastore"""
 
-version := "1.0-SNAPSHOT"
+version := "1.0-1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb, BuildInfoPlugin)
 
