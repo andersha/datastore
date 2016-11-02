@@ -10,7 +10,6 @@ libraryDependencies ++= Seq(
   javaCore,
   cache,
   javaWs,
-  "com.moonlit.logfaces" % "lfsappenders" % "4.2.0",
   "commons-io" % "commons-io" % "2.4",
   "org.webjars" %% "webjars-play" % "2.4.0-2",
   "org.webjars" % "jquery" % "2.1.4",
