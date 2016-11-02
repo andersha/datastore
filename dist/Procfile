@@ -1,0 +1,1 @@
+web: ./bin/ajmoss -Dhttp.port=5000 -Dconfig.file=conf/live.application.conf
