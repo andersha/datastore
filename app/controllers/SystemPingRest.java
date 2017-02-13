@@ -13,7 +13,7 @@ public class SystemPingRest extends Controller {
 
   private static final String PATTERN = "yyyy-MM-d'T'HH:mm:ssZ";
 
-  public static Result status() throws IOException {
+  public Result status() throws IOException {
     PingResponse responsePing = new PingResponse();
     long start = System.nanoTime();
     responsePing.system = buildinfo.BuildInfo.name();

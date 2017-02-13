@@ -1,6 +1,6 @@
-@(files: List[utils.FileInfo])
+@(files: java.util.List[utils.FileInfo], webJarAssets: WebJarAssets)
 
-@main("Realty datastore") {
+@main("Realty datastore", webJarAssets) {
   <div id="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">

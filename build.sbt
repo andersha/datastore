@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   javaWs,
   "com.moonlit.logfaces" % "lfsappenders" % "4.2.0",
   "commons-io" % "commons-io" % "2.4",
-  "org.webjars" %% "webjars-play" % "2.4.0-2",
+  "org.webjars" %% "webjars-play" % "2.5.0-4",
   "org.webjars" % "jquery" % "2.1.4",
   "org.webjars" % "bootstrap" % "3.3.4",
   "org.easytesting" % "fest-assert" % "1.4" % "test"
