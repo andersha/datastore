@@ -1,5 +1,6 @@
 import de.johoop.jacoco4sbt.JacocoPlugin._
 import de.johoop.jacoco4sbt._
+
 name := """realty-datastore"""
 
 version := "1.1-SNAPSHOT"
