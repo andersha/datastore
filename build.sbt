@@ -7,7 +7,7 @@ version := "1.1-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb, BuildInfoPlugin)
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.11"
 
 jacoco.settings
 
