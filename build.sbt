@@ -3,7 +3,7 @@ import de.johoop.jacoco4sbt._
 
 name := """realty-datastore"""
 
-version := "1.1-1"
+version := "1.2-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb, BuildInfoPlugin)
 
