@@ -1,4 +1,5 @@
 GET           /                        controllers.Application.index()
+GET           /store/home              controllers.Application.index()
 GET           /systemping              controllers.SystemPingRest.status()
 GET           /store/systemping        controllers.SystemPingRest.status()
 
