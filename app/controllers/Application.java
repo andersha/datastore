@@ -18,12 +18,9 @@ import java.util.List;
 
 public class Application extends Controller {
 
-  @Inject
-  WebJarAssets webJarAssets;
-
   public Result index() {
     List<FileInfo> files = Store.listFiles();
-    return ok(index.render(files, webJarAssets));
+    return ok(index.render(files));
   }
 
   /**

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Store {
 
-  static String storagePath;
+  private static String storagePath;
 
   public static void setStoragePath(String storagePath) {
     Store.storagePath = storagePath;

@@ -1,27 +1,20 @@
-import de.johoop.jacoco4sbt.JacocoPlugin._
-import de.johoop.jacoco4sbt._
+name := "realty-datastore"
 
-name := """realty-datastore"""
-
-version := "1.2-SNAPSHOT"
+version := "2.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, SbtWeb, BuildInfoPlugin)
 
-scalaVersion := "2.11.11"
-
-jacoco.settings
-
-jacoco.reportFormats in jacoco.Config := Seq(
-  XMLReport(encoding = "utf-8"),
-  ScalaHTMLReport(withBranchCoverage = true))
+scalaVersion := "2.12.4"
 
 libraryDependencies ++= Seq(
   javaCore,
-  cache,
+  ehcache,
   javaWs,
-  "com.moonlit.logfaces" % "lfsappenders" % "4.2.0",
-  "commons-io" % "commons-io" % "2.4",
-  "org.webjars" %% "webjars-play" % "2.5.0-4",
+  filters,
+  guice,
+  "com.moonlit.logfaces" % "lfsappenders" % "4.3.3",
+  "commons-io" % "commons-io" % "2.5",
+  "org.webjars" %% "webjars-play" % "2.6.1",
   "org.webjars" % "jquery" % "2.1.4",
   "org.webjars" % "bootstrap" % "3.3.4",
   "org.easytesting" % "fest-assert" % "1.4" % "test"
@@ -30,8 +23,6 @@ libraryDependencies ++= Seq(
 credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.eiendomsinfo.no", "build", "buildr0nne")
 
 resolvers += "iBiblio" at "https://nexus.eiendomsinfo.no/content/groups/ne/"
-
-parallelExecution in jacoco.Config := false
 
 buildInfoKeys ++= Seq[BuildInfoKey](
   "builtAt" -> {
@@ -51,8 +42,6 @@ buildInfoKeys ++= Seq[BuildInfoKey](
 )
 
 buildInfoPackage := "buildinfo"
-
-sources in doc in Compile := List()
 
 startYear := Some(2014)
 
